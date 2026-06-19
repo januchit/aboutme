@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit;text-decoration:none}
+  input{font:inherit;outline:none}
+  ::selection{background:var(--accent);color:#fff}
+  ::-webkit-scrollbar{height:8px;width:8px}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+  @keyframes riseIn{from{transform:translateY(22px)}to{transform:none}}
+  @media (prefers-reduced-motion: reduce){ [data-reveal]{animation:none !important} }
+</style>
+<script src="cv-data.js"></script>
+</helmet>
+
+<div ref="{{ setRoot }}" style="--bg:#FBFAF7;--panel:#FFFFFF;--ink:#16233B;--muted:#5B6A82;--line:#E7E3D9;--accent:#1D4E89;--accent-soft:rgba(29,78,137,0.09);background:var(--bg);color:var(--ink);font-family:'Archivo',sans-serif;display:flex;align-items:stretch;min-height:100vh;">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside style="width:316px;flex:none;position:sticky;top:0;align-self:flex-start;height:100vh;display:flex;flex-direction:column;padding:34px 30px 26px;border-right:1px solid var(--line);overflow-y:auto;">
+    <div style="position:relative;width:100%;height:256px;flex:none;border-radius:18px;overflow:hidden;background:var(--accent-soft);margin-bottom:22px;border:1px solid var(--line);">
+      <img src="assets/profile.jpeg" alt="Anuchit Jitpattanakul" style="width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;">
+    </div>
+    <div style="font-family:'Newsreader',serif;font-size:25px;font-weight:500;line-height:1.12;letter-spacing:-.01em;color:var(--ink);">Anuchit<br>Jitpattanakul<span style="color:var(--accent);">.</span></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:11px;line-height:1.6;">Assoc. Prof., Ph.D.<br>Applied Mathematics · KMUTNB</div>
+
+    <nav style="margin-top:30px;border-top:1px solid var(--line);padding-top:20px;">
+      <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="7">
+        <a onClick="{{ nav.onClick }}" style="{{ nav.style }}"><span style="{{ nav.dotStyle }}"></span>{{ nav.label }}</a>
+      </sc-for>
+    </nav>
+
+    <div style="margin-top:auto;padding-top:26px;">
+      <div style="border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--muted);">
+        <a href="mailto:anuchit.j@sci.kmutnb.ac.th" style="display:flex;align-items:center;gap:8px;transition:color .2s;" style-hover="color:var(--accent)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);">EM</span>anuchit.j@sci.kmutnb.ac.th</a>
+        <a href="https://orcid.org/0000-0002-5249-2786" target="_blank" style="display:flex;align-items:center;gap:8px;transition:color .2s;" style-hover="color:var(--accent)"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);">OR</span>ORCID 0000-0002-5249-2786</a>
+      </div>
+      <div style="margin-top:18px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;">Theme</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <sc-for list="{{ themeButtons }}" as="tb" hint-placeholder-count="3">
+            <div onClick="{{ tb.onClick }}" style="{{ tb.style }}"><span style="{{ tb.swatchStyle }}"></span>{{ tb.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main style="flex:1;min-width:0;padding:0 clamp(40px,6vw,108px);">
+
+    <!-- HERO -->
+    <section id="about" data-section style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:96px 0 80px;max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:26px;">Researcher · Educator · KMUTNB</div>
+        <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(44px,7vw,90px);line-height:1.0;letter-spacing:-.025em;color:var(--ink);margin-bottom:26px;">Mathematics that<br>learns from <span style="font-style:italic;color:var(--accent);">motion</span>.</h1>
+        <p style="font-size:clamp(17px,1.5vw,20px);line-height:1.7;color:var(--muted);max-width:660px;">Associate Professor of Applied Mathematics and Head of the Intelligent &amp; Nonlinear Dynamic Innovations (INDI) Research Center at KMUTNB. My work bridges mathematics, deep learning, and the Internet of Things — recognizing human activity from wearable and inertial sensors.</p>
+      </div>
+
+      <div data-reveal style="display:flex;align-items:center;gap:13px;margin-top:34px;padding:15px 20px;border:1px solid var(--line);border-radius:14px;background:var(--accent-soft);max-width:560px;">
+        <div style="font-family:'Newsreader',serif;font-size:30px;font-weight:600;color:var(--accent);line-height:1;">2%</div>
+        <div style="font-size:14px;line-height:1.5;color:var(--ink);"><strong style="font-weight:600;">World's Top 2% Scientists 2025</strong><br><span style="color:var(--muted);">Stanford University · Elsevier — Single Year Citation Impact</span></div>
+      </div>
+
+      <div data-reveal style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:30px;max-width:720px;">
+        <div style="background:var(--bg);padding:22px 18px;"><div style="font-family:'Newsreader',serif;font-size:34px;font-weight:600;color:var(--ink);line-height:1;">219</div><div style="font-size:12px;color:var(--muted);margin-top:7px;letter-spacing:.02em;">Publications</div></div>
+        <div style="background:var(--bg);padding:22px 18px;"><div style="font-family:'Newsreader',serif;font-size:34px;font-weight:600;color:var(--ink);line-height:1;">64</div><div style="font-size:12px;color:var(--muted);margin-top:7px;letter-spacing:.02em;">Journal Articles</div></div>
+        <div style="background:var(--bg);padding:22px 18px;"><div style="font-family:'Newsreader',serif;font-size:34px;font-weight:600;color:var(--ink);line-height:1;">155</div><div style="font-size:12px;color:var(--muted);margin-top:7px;letter-spacing:.02em;">Conference Papers</div></div>
+        <div style="background:var(--bg);padding:22px 18px;"><div style="font-family:'Newsreader',serif;font-size:34px;font-weight:600;color:var(--ink);line-height:1;">15<span style="font-size:18px;">+</span></div><div style="font-size:12px;color:var(--muted);margin-top:7px;letter-spacing:.02em;">Years in Research</div></div>
+      </div>
+
+      <div data-reveal style="display:flex;gap:13px;margin-top:34px;flex-wrap:wrap;">
+        <a onClick="{{ contactClick }}" style="padding:13px 24px;border-radius:11px;background:var(--accent);color:#fff;font-size:14.5px;font-weight:600;cursor:pointer;transition:transform .2s;" style-hover="transform:translateY(-2px)">Get in touch</a>
+        <a href="https://orcid.org/0000-0002-5249-2786" target="_blank" style="padding:13px 24px;border-radius:11px;border:1px solid var(--line);color:var(--ink);font-size:14.5px;font-weight:500;cursor:pointer;transition:border-color .2s;" style-hover="border-color:var(--accent)">ORCID profile ↗</a>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" data-section style="padding:90px 0;border-top:1px solid var(--line);max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">01 — Research Focus</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);letter-spacing:-.015em;color:var(--ink);line-height:1.05;margin-bottom:14px;">Where mathematics meets intelligent systems</h2>
+        <p style="font-size:17px;line-height:1.7;color:var(--muted);max-width:640px;margin-bottom:40px;">Four threads run through my research — from the deep-learning models that read sensor signals to the formal theory beneath computation itself.</p>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;">
+        <div style="background:var(--bg);padding:32px 30px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:14px;">/01</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);margin-bottom:11px;">Human Activity Recognition</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:var(--muted);">Deep learning on wearable &amp; inertial sensor data to recognize daily, sport, and clinical activities in real-world settings.</p>
+        </div>
+        <div style="background:var(--bg);padding:32px 30px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:14px;">/02</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);margin-bottom:11px;">Deep Learning for Health</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:var(--muted);">Residual and attention networks for fall detection, EEG seizure detection, and behavioural biometric authentication.</p>
+        </div>
+        <div style="background:var(--bg);padding:32px 30px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:14px;">/03</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);margin-bottom:11px;">IoT &amp; Intelligent Sensing</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:var(--muted);">Sensor fusion, edge models, and IoT systems for activity, mobility, and environment recognition at scale.</p>
+        </div>
+        <div style="background:var(--bg);padding:32px 30px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);margin-bottom:14px;">/04</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);margin-bottom:11px;">Theory of Computation</h3>
+          <p style="font-size:14.5px;line-height:1.65;color:var(--muted);">Formal language theory, automata, and learnability — the mathematical foundations that underpin computing.</p>
+        </div>
+      </div>
+
+      <div data-reveal style="margin-top:34px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Areas of expertise</div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px;">
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Activity Recognition</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Machine &amp; Deep Learning</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Artificial Intelligence</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Data Science &amp; Innovation</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Internet of Things</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Wearable Sensors</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Formal Language Theory</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Automata Theory</span>
+          <span style="padding:9px 15px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--ink);transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent)">Control Theory</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" data-section style="padding:90px 0;border-top:1px solid var(--line);max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">02 — Experience</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);letter-spacing:-.015em;color:var(--ink);line-height:1.05;margin-bottom:40px;">Academic appointments</h2>
+      </div>
+      <div data-reveal style="">
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);padding-top:3px;">2019 — Present</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:5px;">Associate Professor</h3><p style="font-size:14.5px;color:var(--muted);line-height:1.5;">Department of Mathematics, Faculty of Applied Science, KMUTNB</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);padding-top:3px;">2018 — Present</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:5px;">Head, INDI Research Center</h3><p style="font-size:14.5px;color:var(--muted);line-height:1.5;">Intelligent &amp; Nonlinear Dynamic Innovations — Science and Technology Research Institute, KMUTNB</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);padding-top:3px;">2015 — 2024</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:5px;">Programme Chair</h3><p style="font-size:14.5px;color:var(--muted);line-height:1.5;">Mathematics with Computer Science Programme, Department of Mathematics, KMUTNB</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);padding-top:3px;">2014 — 2019</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:5px;">Assistant Professor</h3><p style="font-size:14.5px;color:var(--muted);line-height:1.5;">Department of Mathematics, Faculty of Applied Science, KMUTNB</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);padding-top:3px;">2010 — 2014</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;color:var(--ink);margin-bottom:5px;">Lecturer</h3><p style="font-size:14.5px;color:var(--muted);line-height:1.5;">Department of Mathematics, Faculty of Applied Science, KMUTNB</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" data-section style="padding:90px 0;border-top:1px solid var(--line);max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">03 — Education</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);letter-spacing:-.015em;color:var(--ink);line-height:1.05;margin-bottom:40px;">Academic background</h2>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;gap:16px;">
+        <div style="border:1px solid var(--line);border-radius:16px;padding:28px 30px;background:var(--bg);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px;"><h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);">D.Eng. in Computer Engineering</h3><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2011</span></div>
+          <p style="font-size:14.5px;color:var(--muted);margin-bottom:8px;">Chulalongkorn University</p>
+          <p style="font-size:13.5px;color:var(--muted);font-style:italic;font-family:'Newsreader',serif;">Thesis — “A class of k-acceptable languages and its learnability”</p>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:16px;padding:28px 30px;background:var(--bg);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px;"><h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);">M.Sc. in Computational Science</h3><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2004</span></div>
+          <p style="font-size:14.5px;color:var(--muted);margin-bottom:8px;">Chulalongkorn University</p>
+          <p style="font-size:13.5px;color:var(--muted);font-style:italic;font-family:'Newsreader',serif;">Thesis — “Simulation and visualization of water famine effects on soybean growth”</p>
+        </div>
+        <div style="border:1px solid var(--line);border-radius:16px;padding:28px 30px;background:var(--bg);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px;"><h3 style="font-family:'Newsreader',serif;font-size:23px;font-weight:500;color:var(--ink);">B.Sc. in Applied Mathematics</h3><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2000</span></div>
+          <p style="font-size:14.5px;color:var(--muted);margin-bottom:8px;">King Mongkut's Institute of Technology North Bangkok · First-Class Honours</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" data-section style="padding:90px 0;border-top:1px solid var(--line);max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">04 — Publications</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);letter-spacing:-.015em;color:var(--ink);line-height:1.05;margin-bottom:14px;">219 peer-reviewed works</h2>
+        <p style="font-size:17px;line-height:1.7;color:var(--muted);max-width:620px;margin-bottom:32px;">Search the full record of journal articles and conference papers. Filter by type or year, and open any entry on its DOI.</p>
+      </div>
+
+      <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:60px 0;text-align:center;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;">LOADING PUBLICATIONS…</div>
+      </sc-if>
+
+      <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+      <div data-reveal style="">
+        <div style="position:relative;margin-bottom:16px;">
+          <input value="{{ q }}" onInput="{{ onSearch }}" placeholder="Search by title, author, or venue…" style="width:100%;padding:15px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);font-size:15px;transition:border-color .2s;" style-focus="border-color:var(--accent)">
+        </div>
+        <div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap;">
+          <sc-for list="{{ typeTabs }}" as="tab" hint-placeholder-count="3">
+            <div onClick="{{ tab.onClick }}" style="{{ tab.style }}">{{ tab.label }} <span style="opacity:.6;font-size:12px;">{{ tab.count }}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px;">
+          <sc-for list="{{ yearChips }}" as="chip" hint-placeholder-count="12">
+            <div onClick="{{ chip.onClick }}" style="{{ chip.style }}">{{ chip.label }}</div>
+          </sc-for>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:var(--muted);padding:14px 0 6px;border-bottom:1px solid var(--line);">{{ showText }}</div>
+
+        <div>
+          <sc-for list="{{ filtered }}" as="pub" hint-placeholder-count="8">
+            <div style="display:grid;grid-template-columns:64px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start;">
+              <div style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;color:var(--accent);line-height:1;padding-top:2px;">{{ pub.year }}</div>
+              <div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><span style="{{ pub.badgeStyle }}">{{ pub.badge }}</span></div>
+                <h3 style="font-family:'Newsreader',serif;font-size:18.5px;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:7px;">{{ pub.title }}</h3>
+                <p style="font-size:13.5px;color:var(--muted);line-height:1.5;margin-bottom:4px;">{{ pub.authors }}</p>
+                <p style="font-family:'Newsreader',serif;font-style:italic;font-size:14px;color:var(--muted);line-height:1.45;margin-bottom:9px;">{{ pub.venue }}</p>
+                <sc-if value="{{ pub.doi }}" hint-placeholder-val="{{ true }}">
+                  <a href="{{ pub.doi }}" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--accent);transition:opacity .2s;" style-hover="opacity:.65">VIEW DOI ↗</a>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards" data-section style="padding:90px 0;border-top:1px solid var(--line);max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">05 — Recognition</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.6vw,42px);letter-spacing:-.015em;color:var(--ink);line-height:1.05;margin-bottom:40px;">Awards &amp; honours</h2>
+      </div>
+      <div data-reveal style="">
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2025</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:5px;">World's Top 2% Scientists</h3><p style="font-size:14px;color:var(--muted);line-height:1.5;">Stanford University in collaboration with Elsevier — Single Year Citation Impact 2025</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2024</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:5px;">Outstanding Researcher in Science &amp; Technology</h3><p style="font-size:14px;color:var(--muted);line-height:1.5;">Distinguished Level — King Mongkut's University of Technology North Bangkok</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2021</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:5px;">Gold Medal Award</h3><p style="font-size:14px;color:var(--muted);line-height:1.5;">The International Exhibition of Inventions of Geneva</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2019</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:5px;">Best Paper Award</h3><p style="font-size:14px;color:var(--muted);line-height:1.5;">ECTI DAMT-NCON 2019 — 4th Int'l Conference on Digital Arts, Media and Technology</p></div>
+        </div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);">2017</div>
+          <div><h3 style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:5px;">Award for Bringing Recognition to the University</h3><p style="font-size:14px;color:var(--muted);line-height:1.5;">King Mongkut's University of Technology North Bangkok</p></div>
+        </div>
+      </div>
+
+      <!-- BOOKS + SPEAKING -->
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;">Textbooks authored</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="padding-left:16px;border-left:2px solid var(--accent);"><div style="font-family:'Newsreader',serif;font-size:17px;color:var(--ink);">Discrete Mathematics and Applications</div><div style="font-size:12.5px;color:var(--muted);margin-top:3px;">Textbook Production Center, KMUTNB</div></div>
+            <div style="padding-left:16px;border-left:2px solid var(--accent);"><div style="font-family:'Newsreader',serif;font-size:17px;color:var(--ink);">Theory of Computation</div><div style="font-size:12.5px;color:var(--muted);margin-top:3px;">Textbook Production Center, KMUTNB</div></div>
+            <div style="padding-left:16px;border-left:2px solid var(--accent);"><div style="font-family:'Newsreader',serif;font-size:17px;color:var(--ink);">Computer Programming for Data Science</div><div style="font-size:12.5px;color:var(--muted);margin-top:3px;">Textbook Production Center, KMUTNB</div></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;">Invited talks &amp; training</div>
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <div><div style="font-size:14.5px;color:var(--ink);line-height:1.4;">Data Science &amp; Applications for Wearable Devices</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Silpakorn University · Invited Lecture</div></div>
+            <div><div style="font-size:14.5px;color:var(--ink);line-height:1.4;">The Role of Mathematics in AI: Past, Present &amp; Future</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Suranaree University of Technology · Keynote</div></div>
+            <div><div style="font-size:14.5px;color:var(--ink);line-height:1.4;">R &amp; Python Programming for Data Science</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">TOT Academy · Sakdibhornssup Foundation · Training</div></div>
+            <div><div style="font-size:14.5px;color:var(--ink);line-height:1.4;">Prototyping IoT with KidBright · Coding for Computational Science</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Singburi School · KMUTNB · Training</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" data-section style="padding:90px 0 110px;border-top:1px solid var(--line);max-width:980px;">
+      <div data-reveal style="">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">06 — Contact</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(32px,4.6vw,56px);letter-spacing:-.02em;color:var(--ink);line-height:1.05;margin-bottom:14px;">Let's collaborate.</h2>
+        <p style="font-size:17px;line-height:1.7;color:var(--muted);max-width:560px;margin-bottom:40px;">Open to research collaboration, graduate supervision, and speaking on machine learning, IoT, and applied mathematics.</p>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;">
+        <a href="mailto:anuchit.j@sci.kmutnb.ac.th" style="background:var(--bg);padding:28px 30px;" style-hover="background:var(--accent-soft)"><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;">Email</div><div style="font-size:16px;color:var(--ink);">anuchit.j@sci.kmutnb.ac.th</div></a>
+        <a href="https://orcid.org/0000-0002-5249-2786" target="_blank" style="background:var(--bg);padding:28px 30px;" style-hover="background:var(--accent-soft)"><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;">ORCID</div><div style="font-size:16px;color:var(--ink);">0000-0002-5249-2786 ↗</div></a>
+        <div style="background:var(--bg);padding:28px 30px;"><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;">Phone</div><div style="font-size:16px;color:var(--ink);">+66 2 587 8258 · +66 89 773 9027</div></div>
+        <div style="background:var(--bg);padding:28px 30px;"><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;">Office</div><div style="font-size:15px;color:var(--ink);line-height:1.5;">Faculty of Applied Science, KMUTNB<br>1518 Pracharat 1 Rd, Bang Sue, Bangkok 10800</div></div>
+      </div>
+      <div style="margin-top:48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--muted);">© 2026 Anuchit Jitpattanakul, Ph.D. · King Mongkut's University of Technology North Bangkok</div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;paper&quot;,&quot;frost&quot;,&quot;midnight&quot;],&quot;default&quot;:&quot;paper&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { data:null, theme:'paper', q:'', type:'all', year:'all', activeSection:'about' };
+
+  themes = {
+    paper:    { bg:'#FBFAF7', panel:'#FFFFFF', ink:'#16233B', muted:'#5B6A82', line:'#E7E3D9', accent:'#1D4E89', accentSoft:'rgba(29,78,137,0.09)' },
+    frost:    { bg:'#EDF1F8', panel:'#FFFFFF', ink:'#0E1E38', muted:'#54647E', line:'#D9E1EE', accent:'#2563A8', accentSoft:'rgba(37,99,168,0.10)' },
+    midnight: { bg:'#0A1730', panel:'#102544', ink:'#EAF1FB', muted:'#94A7C7', line:'rgba(255,255,255,0.10)', accent:'#5FA0E6', accentSoft:'rgba(95,160,230,0.15)' }
+  };
+
+  applyTheme(name){
+    const t = this.themes[name] || this.themes.paper;
+    const el = this.rootEl; if(!el) return;
+    el.style.setProperty('--bg', t.bg);
+    el.style.setProperty('--panel', t.panel);
+    el.style.setProperty('--ink', t.ink);
+    el.style.setProperty('--muted', t.muted);
+    el.style.setProperty('--line', t.line);
+    el.style.setProperty('--accent', t.accent);
+    el.style.setProperty('--accent-soft', t.accentSoft);
+  }
+
+  setRoot = (el) => {
+    this.rootEl = el;
+    if(el){
+      this.applyTheme(this.state.theme);
+      requestAnimationFrame(() => this._revealAll());
+    }
+  };
+
+  // Apply a one-time entrance animation imperatively. Because the animation lives on
+  // the DOM node (never in the template style), React re-renders never restart it,
+  // and it works regardless of which element actually scrolls.
+  _revealAll(){
+    if(!this.rootEl) return;
+    let i = 0;
+    this.rootEl.querySelectorAll('[data-reveal]').forEach(el => {
+      if(el.dataset.revInit) return;
+      el.dataset.revInit = '1';
+      // No fill-mode: base state (visible) always applies, so content can never be
+      // stuck hidden if the animation timeline is paused (e.g. inactive tab).
+      el.style.animation = 'riseIn .7s cubic-bezier(.2,.7,.2,1) ' + Math.min(i * 0.06, 0.5) + 's';
+      i++;
+    });
+  }
+
+  componentDidMount(){
+    if(this.props.theme && this.themes[this.props.theme] && this.props.theme !== this.state.theme){
+      this.setState({ theme: this.props.theme }, () => this.applyTheme(this.props.theme));
+    }
+    this._waitForData(0);
+    this._onScroll = () => this._handleScroll();
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    window.addEventListener('resize', this._onScroll, { passive:true });
+    [60,200,500].forEach(ms => setTimeout(() => this._revealAll(), ms));
+  }
+
+  componentWillUnmount(){
+    if(this._onScroll){ window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onScroll); }
+  }
+
+  _waitForData(tries){
+    if(window.CV_DATA){ this.setState({ data: window.CV_DATA }, () => { setTimeout(() => this._revealAll(), 30); setTimeout(() => this._revealAll(), 250); }); return; }
+    if(tries > 80){ console.error('CV data not found'); return; }
+    setTimeout(() => this._waitForData(tries + 1), 50);
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState && !prevState.data && this.state.data){ this.applyTheme(this.state.theme); }
+    if(prevProps && prevProps.theme !== this.props.theme && this.props.theme && this.themes[this.props.theme]){
+      this.setTheme(this.props.theme);
+    }
+  }
+
+  _handleScroll(){
+    if(!this.rootEl) return;
+    const vh = window.innerHeight || 800;
+    let current = this.state.activeSection;
+    const mid = vh * 0.4;
+    this.rootEl.querySelectorAll('section[id]').forEach(el => {
+      const rr = el.getBoundingClientRect();
+      if(rr.top <= mid && rr.bottom > mid) current = el.id;
+    });
+    if(current !== this.state.activeSection) this.setState({ activeSection: current });
+  }
+
+  setTheme(name){ this.setState({ theme:name }, () => this.applyTheme(name)); }
+
+  scrollToId(id){
+    const el = document.getElementById(id); if(!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({ top:y, behavior:'smooth' });
+  }
+
+  renderVals(){
+    const d = this.state.data;
+    const ready = !!d;
+    const th = this.themes;
+
+    const themeButtons = [['paper','Paper'],['frost','Frost'],['midnight','Midnight']].map(([key,label]) => ({
+      key, label,
+      onClick: () => this.setTheme(key),
+      swatchStyle: `display:inline-block;width:13px;height:13px;border-radius:50%;background:${th[key].accent};box-shadow:0 0 0 1px var(--line);`,
+      style: `display:flex;align-items:center;gap:8px;padding:7px 11px;border-radius:9px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;transition:.2s;border:1px solid ${this.state.theme===key?'var(--accent)':'var(--line)'};color:${this.state.theme===key?'var(--ink)':'var(--muted)'};background:${this.state.theme===key?'var(--accent-soft)':'transparent'};`
+    }));
+
+    const navDefs = [['about','About'],['research','Research'],['experience','Experience'],['education','Education'],['publications','Publications'],['awards','Awards'],['contact','Contact']];
+    const navItems = navDefs.map(([id,label]) => {
+      const active = this.state.activeSection === id;
+      return {
+        id, label,
+        onClick: () => this.scrollToId(id),
+        style: `display:flex;align-items:center;padding:7px 0;font-size:14.5px;cursor:pointer;transition:color .25s;color:${active?'var(--ink)':'var(--muted)'};font-weight:${active?'600':'400'};`,
+        dotStyle: `display:inline-block;height:1px;margin-right:12px;transition:width .25s,background .25s;background:${active?'var(--accent)':'var(--line)'};width:${active?'28px':'16px'};`
+      };
+    });
+
+    let pubs = [];
+    if(d){
+      pubs = [
+        ...d.journals.map(p => ({ ...p, kind:'Journal' })),
+        ...d.conferences.map(p => ({ ...p, kind:'Conference' }))
+      ];
+      pubs.sort((a,b) => (b.year||0) - (a.year||0));
+    }
+
+    const q = this.state.q.trim().toLowerCase();
+    const filtered = pubs.filter(p => {
+      if(this.state.type === 'journal' && p.kind !== 'Journal') return false;
+      if(this.state.type === 'conference' && p.kind !== 'Conference') return false;
+      if(this.state.year !== 'all' && String(p.year) !== String(this.state.year)) return false;
+      if(q){
+        const hay = ((p.title||'') + ' ' + (p.authors||'') + ' ' + (p.venue||'')).toLowerCase();
+        if(!hay.includes(q)) return false;
+      }
+      return true;
+    }).map(p => ({
+      ...p,
+      badge: p.kind,
+      badgeStyle: `font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;${p.kind==='Journal'?'background:var(--accent-soft);color:var(--accent);':'border:1px solid var(--line);color:var(--muted);'}`
+    }));
+
+    const cJ = pubs.filter(p => p.kind === 'Journal').length;
+    const cC = pubs.filter(p => p.kind === 'Conference').length;
+    const mkTab = (key,label,count) => ({
+      key, label, count,
+      onClick: () => this.setState({ type:key }),
+      style: `padding:9px 16px;border-radius:9px;cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap;transition:.2s;border:1px solid ${this.state.type===key?'var(--accent)':'var(--line)'};color:${this.state.type===key?'#fff':'var(--muted)'};background:${this.state.type===key?'var(--accent)':'transparent'};`
+    });
+    const typeTabs = [ mkTab('all','All',pubs.length), mkTab('journal','Journals',cJ), mkTab('conference','Conferences',cC) ];
+
+    const years = [...new Set(pubs.map(p => p.year).filter(Boolean))].sort((a,b) => b - a);
+    const mkChip = (key,label) => {
+      const active = String(this.state.year) === String(key);
+      return {
+        key, label,
+        onClick: () => this.setState({ year:key }),
+        style: `padding:6px 13px;border-radius:999px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11.5px;white-space:nowrap;transition:.2s;border:1px solid ${active?'var(--accent)':'var(--line)'};color:${active?'var(--accent)':'var(--muted)'};background:${active?'var(--accent-soft)':'transparent'};`
+      };
+    };
+    const yearChips = [ mkChip('all','ALL'), ...years.map(y => mkChip(y, String(y))) ];
+
+    const showText = `Showing ${filtered.length} of ${pubs.length} publications`;
+
+    return {
+      ready, loading: !ready,
+      setRoot: this.setRoot,
+      themeButtons, navItems, typeTabs, yearChips,
+      filtered, showText,
+      q: this.state.q,
+      onSearch: (e) => this.setState({ q: e.target.value }),
+      contactClick: () => this.scrollToId('contact')
+    };
+  }
+}
+</script>
+</body>
+</html>
